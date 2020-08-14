@@ -1,0 +1,21 @@
+.gifChooser {
+  width: 100px;
+  height: 100px;
+  border: 1px solid blue;
+}
+
+.selectedGif {
+  border: 3px solid red;
+}
+
+.selectedPackage {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  /* margin-left: auto;
+  margin-right: auto; */
+  background-color: orangered;
+  color: black;
+  flex-direction: column;
+}
