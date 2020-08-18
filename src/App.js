@@ -127,7 +127,13 @@ const App = () => {
       e: [...recording.map(item => item.value)]
     };
 
-    packages.forEach(p => {
+    let filteredByCOption = packages.filter(({ c }) => {
+      if (c.indexOf(current.c[0]) !== -1) return true;
+      return false;
+    })
+    console.log(filteredByCOption);
+
+    filteredByCOption.forEach(p => {
       let counter = 0;
       Object.keys(current).forEach(key => {
         current[key].forEach(letterAndNumber => {
@@ -140,10 +146,10 @@ const App = () => {
     });
 
 
-    let sorted = _.sortBy(packages, ['counter', 'price'])
-    console.log(sorted)
+    let sorted = _.orderBy(filteredByCOption, ['counter', 'price'], ['desc', 'asc']);
+    console.log(sorted);
 
-    let selectedPackage = sorted[sorted.length - 1];
+    let selectedPackage = sorted[0];
 
     return (
       <div className="selectedPackage">
@@ -167,111 +173,113 @@ const App = () => {
         { title: 'Recording' },
         { title: 'Finish' }
       ]} activeStep={active} />
-      {
-        active === 0 && <div>
-          <input type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
-          <input type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
-          <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-          <input type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
+      <div className="stepContainer">
+        {
+          active === 0 && <div className="contentDiv">
 
-          <button className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
-        </div>
-      }
-      {
-        active === 1 && <div>
-          <MultiSelect
-            options={optionsA}
-            value={targetAudience}
-            onChange={setTargetAudience}
-            labelledBy={"Select"}
-          />
-          <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
-          {
-            targetAudience.length > 0 && <button className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
-          }
-        </div>
-      }
-      {
-        active === 2 && <div>
-          <MultiSelect
-            options={optionsB}
-            value={platforms}
-            onChange={setPlatforms}
-            labelledBy={"Select"}
-          />
-          <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
-          {
-            platforms.length > 0 && <button className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
-          }
-        </div>
-      }
-      {
-        active === 3 && <div>
-          <MultiSelect
-            options={optionsC}
-            value={frequency}
-            onChange={(data) => {
-              if (!data || !data.length) {
-                setFrequency([]);
-                return;
-              }
-
-              if (data.length === 2) {
-                setFrequency([data[1]]);
-                return;
-              }
-
-              setFrequency([data[0]])
-            }}
-            labelledBy={"Select"}
-            hasSelectAll={false}
-          />
-          <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
-          {
-            frequency.length > 0 && <button className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
-          }
-        </div>
-      }
-      {
-        active === 4 && <div>
-          <div>
-            <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d1']) }} />
-            <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d2']) }} />
-            <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d3']) }} />
-            <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d4']) }} />
-            <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d5']) }} />
+            <div className="contentDivInner">
+              <p>First name:</p>
+              <input className="infoInput" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
+              <p>Last name:</p>
+              <input className="infoInput" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
+              <p>Email:</p>
+              <input className="infoInput" type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+              <p>Phone:</p>
+              <input className="infoInput" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
+            </div>
+            <button className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
           </div>
-          <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
-          {
-            style.length > 0 && <button className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
-          }
-        </div>
-      }
-      {
-        active === 5 && <div>
-          <MultiSelect
-            options={optionsE}
-            value={recording}
-            onChange={setRecording}
-            labelledBy={"Select"}
-          />
-          <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
-          {
-            recording.length > 0 && <button className="nextButton" onClick={
+        }
+        {
+          active === 1 && <div className="contentDiv">
+            <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
+            <MultiSelect
+              options={optionsA}
+              value={targetAudience}
+              onChange={setTargetAudience}
+              labelledBy={"Select"}
+              className="multiSelect"
+            />
+            <button disabled={targetAudience.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+          </div>
+        }
+        {
+          active === 2 && <div className="contentDiv">
+            <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
+            <MultiSelect
+              options={optionsB}
+              value={platforms}
+              onChange={setPlatforms}
+              labelledBy={"Select"}
+              className="multiSelect"
+            />
+            <button disabled={platforms.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+          </div>
+        }
+        {
+          active === 3 && <div className="contentDiv">
+            <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
+            <MultiSelect
+              options={optionsC}
+              value={frequency}
+              onChange={(data) => {
+                if (!data || !data.length) {
+                  setFrequency([]);
+                  return;
+                }
+
+                if (data.length === 2) {
+                  setFrequency([data[1]]);
+                  return;
+                }
+
+                setFrequency([data[0]])
+              }}
+              labelledBy={"Select"}
+              hasSelectAll={false}
+              className="multiSelect"
+            />
+            <button disabled={frequency.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+          </div>
+        }
+        {
+          active === 4 && <div className="contentDiv">
+            <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
+            <div>
+              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d1']) }} />
+              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d2']) }} />
+              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d3']) }} />
+              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d4']) }} />
+              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d5']) }} />
+            </div>
+            <button disabled={style.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+          </div>
+        }
+        {
+          active === 5 && <div className="contentDiv">
+            <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
+            <MultiSelect
+              options={optionsE}
+              value={recording}
+              onChange={setRecording}
+              labelledBy={"Select"}
+              className="multiSelect"
+            />
+            <button disabled={recording.length <= 0} className="nextButton" onClick={
               () => {
                 setActive(active + 1);
               }
             }>Next</button>
-          }
-        </div>
-      }
-      {
-        active === 6 && <div>
-          <h1>Based on your answers we suggest the following package</h1>
-          <h3>(Not sure if it’s the write choice? Check other packages, or give us a call!)</h3>
-          {getPackage()}
-        </div>
-      }
+          </div>
+        }
+        {
+          active === 6 && <div className="contentDiv">
+            <h1>Based on your answers we suggest the following package</h1>
+            <h3>(Not sure if it’s the write choice? Check other packages, or give us a call!)</h3>
+            {getPackage()}
+          </div>
+        }
+      </div>
     </div>
   );
 }

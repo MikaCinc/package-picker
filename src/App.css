@@ -1,3 +1,7 @@
+body {
+  background-color: whitesmoke;
+}
+
 .gifChooser {
   width: 100px;
   height: 100px;
@@ -18,4 +22,76 @@
   background-color: orangered;
   color: black;
   flex-direction: column;
+}
+
+.stepContainer {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.contentDiv {
+  display: flex;
+  min-width: 300px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoInput {
+  padding: 10px;
+  margin: 10px;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.infoInput:hover {
+  border-radius: 10px;
+  border: 1px solid blue;
+}
+
+.nextButton {
+  display: block;
+  padding: 10px;
+  color: blue;
+  border: 1px solid gray;
+  background: white;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin: 100px;
+}
+
+.nextButton:hover {
+  border-radius: 10px;
+  border: 1px solid blue;
+}
+
+.nextButton:disabled {
+  border: 1px solid gray;
+  color: gray;
+  cursor: not-allowed;
+}
+
+.backButton {
+  display: block;
+  padding: 10px;
+  color: red;
+  border: 1px solid gray;
+  background: white;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin: 100px;
+}
+
+.backButton:hover {
+  border-radius: 10px;
+  border: 1px solid red;
+}
+
+.multiSelect {
+  min-width: 240px;
 }
