@@ -105,11 +105,11 @@ const optionsE = [
 ];
 
 const App = () => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(6);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('fghfgh@asd.com');
   const [phone, setPhone] = useState('');
 
   const [targetAudience, setTargetAudience] = useState([]);
@@ -131,7 +131,7 @@ const App = () => {
       if (c.indexOf(current.c[0]) !== -1) return true;
       return false;
     })
-    console.log(filteredByCOption);
+    // console.log(filteredByCOption);
 
     filteredByCOption.forEach(p => {
       let counter = 0;
@@ -147,9 +147,14 @@ const App = () => {
 
 
     let sorted = _.orderBy(filteredByCOption, ['counter', 'price'], ['desc', 'asc']);
-    console.log(sorted);
+    // console.log(sorted);
 
-    let selectedPackage = sorted[0];
+    // let selectedPackage = sorted[0];
+    let selectedPackage = packages[0];
+
+    if(!selectedPackage) {
+      return null;
+    }
 
     return (
       <div className="selectedPackage">
@@ -160,6 +165,20 @@ const App = () => {
         <h3>{selectedPackage.price}</h3>
       </div>
     )
+  }
+
+  const validateEmail = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  const firstFormSubmit = (e) => {
+    e.preventDefault();
+    if (!validateEmail(email)) {
+      alert('Please type valid email before moving to the next step');
+      return;
+    }
+    setActive(active + 1);
   }
 
   return (
@@ -175,20 +194,20 @@ const App = () => {
       ]} activeStep={active} />
       <div className="stepContainer">
         {
-          active === 0 && <div className="contentDiv">
-
+          active === 0 && <form className="contentDiv" onSubmit={firstFormSubmit}>
+            <button className="backButton" disabled>Back</button>
             <div className="contentDivInner">
               <p>First name:</p>
               <input className="infoInput" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
               <p>Last name:</p>
               <input className="infoInput" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
               <p>Email:</p>
-              <input className="infoInput" type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+              <input className="infoInput" required type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
               <p>Phone:</p>
               <input className="infoInput" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
             </div>
-            <button className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
-          </div>
+            <input className="nextButton" type="submit" value="Next" />
+          </form>
         }
         {
           active === 1 && <div className="contentDiv">
@@ -246,11 +265,11 @@ const App = () => {
           active === 4 && <div className="contentDiv">
             <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
             <div>
-              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d1']) }} />
-              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d2']) }} />
-              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d3']) }} />
-              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d4']) }} />
-              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d5']) }} />
+              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d1']) }} />
+              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d2']) }} />
+              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d3']) }} />
+              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d4']) }} />
+              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d5']) }} />
             </div>
             <button disabled={style.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
           </div>
@@ -273,9 +292,9 @@ const App = () => {
           </div>
         }
         {
-          active === 6 && <div className="contentDiv">
+          active === 6 && <div className="finalContentDiv">
             <h1>Based on your answers we suggest the following package</h1>
-            <h3>(Not sure if it’s the write choice? Check other packages, or give us a call!)</h3>
+            <h3>(Not sure if it’s the right choice? Check other packages, or give us a call!)</h3>
             {getPackage()}
           </div>
         }
