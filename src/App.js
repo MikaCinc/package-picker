@@ -105,11 +105,11 @@ const optionsE = [
 ];
 
 const App = () => {
-  const [active, setActive] = useState(6);
+  const [active, setActive] = useState(0);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('fghfgh@asd.com');
+  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
   const [targetAudience, setTargetAudience] = useState([]);
@@ -131,7 +131,7 @@ const App = () => {
       if (c.indexOf(current.c[0]) !== -1) return true;
       return false;
     })
-    // console.log(filteredByCOption);
+    console.log(filteredByCOption);
 
     filteredByCOption.forEach(p => {
       let counter = 0;
@@ -147,12 +147,12 @@ const App = () => {
 
 
     let sorted = _.orderBy(filteredByCOption, ['counter', 'price'], ['desc', 'asc']);
-    // console.log(sorted);
+    console.log(sorted);
 
-    // let selectedPackage = sorted[0];
-    let selectedPackage = packages[0];
+    let selectedPackage = sorted[0];
+    // let selectedPackage = packages[0];
 
-    if(!selectedPackage) {
+    if (!selectedPackage) {
       return null;
     }
 
@@ -163,7 +163,7 @@ const App = () => {
           return <p key={index}>{i}</p>
         })}</div>
         <h3>{`$${selectedPackage.price}`}</h3>
-        <button className="finalButton" onClick={() => {}}>Buy</button>
+        <button className="finalButton" onClick={() => { }}>Buy</button>
       </div>
     )
   }
@@ -198,14 +198,22 @@ const App = () => {
           active === 0 && <form className="contentDiv" onSubmit={firstFormSubmit}>
             <button className="backButton" disabled>Back</button>
             <div className="contentDivInner">
-              <p>First name:</p>
-              <input className="infoInput" placeholder="ex. Marko" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
-              <p>Last name:</p>
-              <input className="infoInput" placeholder="ex. Vučković" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
-              <p>Email:</p>
-              <input className="infoInput" placeholder="ex. marko@vuckovic.com" required type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-              <p>Phone:</p>
-              <input className="infoInput" placeholder="ex. (063)554-455" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
+              <div className="infoFieldContainer">
+                <p>First name:</p>
+                <input className="infoInput" placeholder="ex. Marko" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
+              </div>
+              <div className="infoFieldContainer">
+                <p>Last name:</p>
+                <input className="infoInput" placeholder="ex. Vučković" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
+              </div>
+              <div className="infoFieldContainer">
+                <p>Email:</p>
+                <input className="infoInput" placeholder="ex. marko@vuckovic.com" required type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+              </div>
+              <div className="infoFieldContainer">
+                <p>Phone:</p>
+                <input className="infoInput" placeholder="ex. (063)554-455" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
+              </div>
             </div>
             <input className="nextButton" type="submit" value="Next" />
           </form>

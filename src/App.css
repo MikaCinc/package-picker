@@ -34,10 +34,49 @@ h1 {
   margin-top: 75px;
 }
 
+@media (max-width: 400px) {
+  /* .contentDiv:first {
+    flex-direction: column !important;
+  }
+
+  .contentDiv {
+    margin-top: 25px !important;
+  }
+
+  .backButton:first {
+    margin-bottom: 15px;
+  } */
+
+  .finalContentDiv {
+    margin-top: 20px !important;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  /* .nextButton {
+    margin-top: 15px;
+  } */
+}
+
+.infoFieldContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .infoInput {
   padding: 10px;
   margin: 10px;
   width: 150px;
+  height: 20px;
   transition-duration: 0.4s;
   border-radius: 5px;
   border: 1px solid gray;
@@ -111,7 +150,7 @@ h1 {
   margin-top: 50px;
 }
 
-.finalContentDiv > h1 {
+.finalContentDiv > h1, h3 {
   text-align: center;
 }
 
