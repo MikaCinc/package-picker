@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/package-picker/static/css/main.cfe414fd.chunk.css",
+    "main.css": "/package-picker/static/css/main.36ff699e.chunk.css",
     "main.js": "/package-picker/static/js/main.1a1b16e6.chunk.js",
     "main.js.map": "/package-picker/static/js/main.1a1b16e6.chunk.js.map",
     "runtime-main.js": "/package-picker/static/js/runtime-main.c83dbfd3.js",
@@ -8,15 +8,15 @@
     "static/js/2.23739f9f.chunk.js": "/package-picker/static/js/2.23739f9f.chunk.js",
     "static/js/2.23739f9f.chunk.js.map": "/package-picker/static/js/2.23739f9f.chunk.js.map",
     "index.html": "/package-picker/index.html",
-    "precache-manifest.878bcbc39418a9a0ac1c4f337858bfce.js": "/package-picker/precache-manifest.878bcbc39418a9a0ac1c4f337858bfce.js",
+    "precache-manifest.89e10c6a38c4bae8382ac64d8e4fd572.js": "/package-picker/precache-manifest.89e10c6a38c4bae8382ac64d8e4fd572.js",
     "service-worker.js": "/package-picker/service-worker.js",
-    "static/css/main.cfe414fd.chunk.css.map": "/package-picker/static/css/main.cfe414fd.chunk.css.map",
+    "static/css/main.36ff699e.chunk.css.map": "/package-picker/static/css/main.36ff699e.chunk.css.map",
     "static/js/2.23739f9f.chunk.js.LICENSE.txt": "/package-picker/static/js/2.23739f9f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c83dbfd3.js",
     "static/js/2.23739f9f.chunk.js",
-    "static/css/main.cfe414fd.chunk.css",
+    "static/css/main.36ff699e.chunk.css",
     "static/js/main.1a1b16e6.chunk.js"
   ]
 }
