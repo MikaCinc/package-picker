@@ -6,6 +6,16 @@ h1 {
   margin: 0px;
 }
 
+/* * {
+  transition-duration: 0.2s;
+}
+
+:focus {
+  border: 2px solid white;
+  outline: 3px solid #5096FF;
+  box-shadow: 0 0 10px 1px #5096FF;
+} */
+
 .gifContainer {
   display: flex;
   align-items: center;
