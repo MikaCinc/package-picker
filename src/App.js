@@ -80,7 +80,7 @@ const optionsA = [
 const optionsB = [
   { label: "YouTube", value: "b1" },
   { label: "Instagram", value: "b2" },
-  { label: "LInkedIn", value: "b3" },
+  { label: "LinkedIn", value: "b3" },
   { label: "TikTok", value: "b4" },
   { label: "Twitter", value: "b5" },
   { label: "Podcasting Platforms", value: "b6" },
@@ -162,7 +162,8 @@ const App = () => {
         <div>{selectedPackage.includes.map((i, index) => {
           return <p key={index}>{i}</p>
         })}</div>
-        <h3>{selectedPackage.price}</h3>
+        <h3>{`$${selectedPackage.price}`}</h3>
+        <button className="finalButton" onClick={() => {}}>Buy</button>
       </div>
     )
   }
@@ -198,13 +199,13 @@ const App = () => {
             <button className="backButton" disabled>Back</button>
             <div className="contentDivInner">
               <p>First name:</p>
-              <input className="infoInput" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
+              <input className="infoInput" placeholder="ex. Marko" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
               <p>Last name:</p>
-              <input className="infoInput" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
+              <input className="infoInput" placeholder="ex. Vučković" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
               <p>Email:</p>
-              <input className="infoInput" required type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+              <input className="infoInput" placeholder="ex. marko@vuckovic.com" required type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
               <p>Phone:</p>
-              <input className="infoInput" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
+              <input className="infoInput" placeholder="ex. (063)554-455" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
             </div>
             <input className="nextButton" type="submit" value="Next" />
           </form>
