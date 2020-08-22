@@ -273,12 +273,12 @@ const App = () => {
         {
           active === 4 && <div className="contentDiv">
             <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
-            <div>
-              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d1']) }} />
-              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d2']) }} />
-              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d3']) }} />
-              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d4']) }} />
-              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src="" width="100px" height="100px" onClick={() => { setStyle(['d5']) }} />
+            <div className="gifContainer">
+              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d1']) }} />
+              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d2']) }} />
+              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d3']) }} />
+              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d4']) }} />
+              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d5']) }} />
             </div>
             <button disabled={style.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
           </div>
