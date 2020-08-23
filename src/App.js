@@ -42,8 +42,18 @@ const optionsE = [
   { label: "Professional camera", value: "e3" },
 ];
 
+
+const labels = [
+  'Based on the answers you provide us, we will generate a custom tailored plan just for you! Let us know more about you and your brand.',
+  'How old is your target audience? (Age groups)',
+  'Where do you want to serve content? (Select all that apply)',
+  'How frequently would you like to post videos across all platforms?',
+  "Which content style best resonates with the style you’re looking for?",
+  'What will you be using to record your content?'
+]
+
 const App = () => {
-  const [active, setActive] = useState(4);
+  const [active, setActive] = useState(0);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -143,6 +153,7 @@ const App = () => {
         defaultOpacity="0.7"
       />
       <div className="stepContainer">
+        <h3 className="stepLabel">{labels[active]}</h3>
         {
           active === 0 && <form className="contentDiv" onSubmit={firstFormSubmit}>
             <button className="backButton" disabled>Back</button>
@@ -223,11 +234,26 @@ const App = () => {
           active === 4 && <div className="contentDiv">
             <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
             <div className="gifContainer">
-              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/lPXADFGvpQn68OeyFs/giphy-downsized.gif'} onClick={() => { setStyle(['d1']) }} />
-              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/clohjFAo60iBlbcc7f/giphy-downsized.gif'} onClick={() => { setStyle(['d2']) }} />
-              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/VIDVfz1sipCyyywQvB/giphy-downsized.gif'} onClick={() => { setStyle(['d3']) }} />
-              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/W02FsttvBToErpFFTM/giphy.gif'} onClick={() => { setStyle(['d4']) }} />
-              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/gHQjlU2zFlxkI1dfIM/giphy-downsized.gif'} onClick={() => { setStyle(['d5']) }} />
+              <div className="gifInnerContainer">
+                <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/lPXADFGvpQn68OeyFs/giphy-downsized.gif'} onClick={() => { setStyle(['d1']) }} />
+                <p className="gifTitle">Brene Brown</p>
+              </div>
+              <div className="gifInnerContainer">
+                <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/clohjFAo60iBlbcc7f/giphy-downsized.gif'} onClick={() => { setStyle(['d2']) }} />
+                <p className="gifTitle">Gary Vee</p>
+              </div>
+              <div className="gifInnerContainer">
+                <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/VIDVfz1sipCyyywQvB/giphy-downsized.gif'} onClick={() => { setStyle(['d3']) }} />
+                <p className="gifTitle">Peter Voogd</p>
+              </div>
+              <div className="gifInnerContainer">
+                <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/W02FsttvBToErpFFTM/giphy.gif'} onClick={() => { setStyle(['d4']) }} />
+                <p className="gifTitle">Ryan Serhan</p>
+              </div>
+              <div className="gifInnerContainer">
+                <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/gHQjlU2zFlxkI1dfIM/giphy-downsized.gif'} onClick={() => { setStyle(['d5']) }} />
+                <p className="gifTitle">Tony Robbins</p>
+              </div>
             </div>
             <button disabled={style.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
           </div>

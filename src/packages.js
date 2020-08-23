@@ -16,7 +16,7 @@ const packages = [
         e: ['e1', 'e2', 'e3']
     },
     {
-        title: 'Social Media Star',
+        title: 'Supreme Executive',
         price: 1399,
         includes: [
             '4-7 videos a week customized for every requested social media platforms',
@@ -32,7 +32,7 @@ const packages = [
         e: ['e1', 'e2']
     },
     {
-        title: 'Podcaster',
+        title: 'Chief',
         price: 1199,
         includes: [
             '1-3 videos a week customized for every requested social media platform',
