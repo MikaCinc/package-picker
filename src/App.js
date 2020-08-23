@@ -27,7 +27,7 @@ const packages = [
     price: 1399,
     includes: [
       '4-7 videos a week customized for every requested social media platforms',
-      '1 website landing page videos per month',
+      '1 website landing page video per month',
       'Maximum of 2 Ad videos per month',
       'Unlimited revisions per video',
       'Open communication channel',
@@ -105,7 +105,7 @@ const optionsE = [
 ];
 
 const App = () => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -149,8 +149,8 @@ const App = () => {
     let sorted = _.orderBy(filteredByCOption, ['counter', 'price'], ['desc', 'asc']);
     console.log(sorted);
 
-    let selectedPackage = sorted[0];
-    // let selectedPackage = packages[0];
+    // let selectedPackage = sorted[0];
+    let selectedPackage = packages[0];
 
     if (!selectedPackage) {
       return null;
@@ -184,15 +184,26 @@ const App = () => {
 
   return (
     <div className="App">
-      <Stepper steps={[
-        { title: 'Info' },
-        { title: 'Target audience' },
-        { title: 'Platforms' },
-        { title: 'Frequency' },
-        { title: 'Style' },
-        { title: 'Recording' },
-        { title: 'Finish' }
-      ]} activeStep={active} />
+      <Stepper
+        steps={[
+          { title: 'Info' },
+          { title: 'Target audience' },
+          { title: 'Platforms' },
+          { title: 'Frequency' },
+          { title: 'Style' },
+          { title: 'Recording' },
+          { title: 'Finish' }
+        ]}
+        activeStep={active}
+        activeColor="#ffffff"
+        activeTitleColor="#ffffff"
+        circleFontColor="#000000"
+        completeColor="#ffffff"
+        completeTitleColor="#ffffff"
+        defaultColor="#a6a6a6"
+        completeBarColor="#ffffff"
+        defaultOpacity="0.7"
+      />
       <div className="stepContainer">
         {
           active === 0 && <form className="contentDiv" onSubmit={firstFormSubmit}>
@@ -302,8 +313,14 @@ const App = () => {
         }
         {
           active === 6 && <div className="finalContentDiv">
-            <h1>Based on your answers we suggest the following package</h1>
-            <h3>(Not sure if it’s the right choice? Check other packages, or give us a call!)</h3>
+            <h1 className="finalTitle">Based on your answers we suggest the following package</h1>
+            <h3 className="finalSubtitle">
+              (Not sure if it’s the right choice? Check
+            <span className="link">other packages</span>
+            , or give us a
+            <sppan className="link">call</sppan>
+            !)
+            </h3>
             {getPackage()}
           </div>
         }
