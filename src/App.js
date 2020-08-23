@@ -5,69 +5,7 @@ import Stepper from 'react-stepper-horizontal';
 import MultiSelect from "react-multi-select-component";
 import _ from 'lodash';
 
-const packages = [
-  {
-    title: 'Business Leader',
-    price: 1699,
-    includes: [
-      '5-10 videos a week customized for every requested social media platform',
-      '2 website landing page videos per month',
-      'Maximum of 3 Ad videos per month',
-      'Unlimited revisions per video',
-      'Open communication channel',
-    ],
-    a: ['a3', 'a4', 'a5'],
-    b: ['b1', 'b2', 'b3', 'b5', 'b8'],
-    c: ['c5', 'c6', 'c7'],
-    d: ['d2', 'd5'],
-    e: ['e1', 'e2', 'e3']
-  },
-  {
-    title: 'Social Media Star',
-    price: 1399,
-    includes: [
-      '4-7 videos a week customized for every requested social media platforms',
-      '1 website landing page video per month',
-      'Maximum of 2 Ad videos per month',
-      'Unlimited revisions per video',
-      'Open communication channel',
-    ],
-    a: ['a1', 'a2'],
-    b: ['b1', 'b2', 'b4', 'b5', 'b7'],
-    c: ['c4', 'c5', 'c6', 'c7', 'c8'],
-    d: ['d1', 'd4'],
-    e: ['e1', 'e2']
-  },
-  {
-    title: 'Podcaster',
-    price: 1199,
-    includes: [
-      '1-3 videos a week customized for every requested social media platform',
-      'Maximum of 1 Ad video per month',
-      'Limited to 4 revisions per video',
-      'Open communication channel',
-    ],
-    a: ['a1', 'a3', 'a4', 'a5'],
-    b: ['b1', 'b2', 'b6'],
-    c: ['c1', 'c2', 'c3'],
-    d: ['d1', 'd3'],
-    e: ['e1', 'e2']
-  },
-  {
-    title: 'Beginner Leader',
-    price: 999,
-    includes: [
-      '1-2 videos a week customized for every requested social media platform',
-      'Limited to 2 revisions per video',
-      'Open communication channel',
-    ],
-    a: ['a1', 'a2', 'a3', 'a4', 'a5'],
-    b: ['b2', 'b3', 'b4', 'b5', 'b7'],
-    c: ['c1', 'c2'],
-    d: ['d1', 'd4'],
-    e: ['e1']
-  },
-]
+import packages from './packages';
 
 const optionsA = [
   { label: "13-17", value: "a1" },
@@ -105,7 +43,7 @@ const optionsE = [
 ];
 
 const App = () => {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(4);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -149,8 +87,8 @@ const App = () => {
     let sorted = _.orderBy(filteredByCOption, ['counter', 'price'], ['desc', 'asc']);
     console.log(sorted);
 
-    // let selectedPackage = sorted[0];
-    let selectedPackage = packages[0];
+    let selectedPackage = sorted[0];
+    // let selectedPackage = packages[0];
 
     if (!selectedPackage) {
       return null;
@@ -285,11 +223,11 @@ const App = () => {
           active === 4 && <div className="contentDiv">
             <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
             <div className="gifContainer">
-              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d1']) }} />
-              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d2']) }} />
-              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d3']) }} />
-              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d4']) }} />
-              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src="" onClick={() => { setStyle(['d5']) }} />
+              <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/lPXADFGvpQn68OeyFs/giphy-downsized.gif'} onClick={() => { setStyle(['d1']) }} />
+              <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/clohjFAo60iBlbcc7f/giphy-downsized.gif'} onClick={() => { setStyle(['d2']) }} />
+              <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/VIDVfz1sipCyyywQvB/giphy-downsized.gif'} onClick={() => { setStyle(['d3']) }} />
+              <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/W02FsttvBToErpFFTM/giphy.gif'} onClick={() => { setStyle(['d4']) }} />
+              <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/gHQjlU2zFlxkI1dfIM/giphy-downsized.gif'} onClick={() => { setStyle(['d5']) }} />
             </div>
             <button disabled={style.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
           </div>
@@ -318,7 +256,7 @@ const App = () => {
               (Not sure if it’s the right choice? Check
             <span className="link">other packages</span>
             , or give us a
-            <sppan className="link">call</sppan>
+            <span className="link">call</span>
             !)
             </h3>
             {getPackage()}

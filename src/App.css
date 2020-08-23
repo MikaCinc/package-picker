@@ -32,10 +32,10 @@ p, h3, h2 {
 }
 
 .gifChooser {
-  /* width: 100px;
-  height: 100px; */
+  width: 250px;
+  height: 250px;
   border: 2px solid gray;
-  padding: 50px;
+  /* padding: 1px; */
   margin: 10px;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -65,7 +65,7 @@ p, h3, h2 {
   margin-top: 75px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   /* .contentDiv:first {
     flex-direction: column !important;
   }
@@ -84,6 +84,11 @@ p, h3, h2 {
 
   .finalContentDiv {
     margin-top: 20px !important;
+  }
+
+  .gifChooser {
+    width: 150px;
+    height: 150px;
   }
 
   h1 {
