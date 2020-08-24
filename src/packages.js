@@ -7,7 +7,7 @@ const packages = [
             '2 website landing page videos per month',
             'Maximum of 3 Ad videos per month',
             'Unlimited revisions per video',
-            'Open communication channel',
+            'Open communication channel'
         ],
         a: ['a3', 'a4', 'a5'],
         b: ['b1', 'b2', 'b3', 'b5', 'b8'],
@@ -23,7 +23,7 @@ const packages = [
             '1 website landing page video per month',
             'Maximum of 2 Ad videos per month',
             'Unlimited revisions per video',
-            'Open communication channel',
+            'Open communication channel'
         ],
         a: ['a1', 'a2'],
         b: ['b1', 'b2', 'b4', 'b5', 'b7'],
@@ -38,7 +38,7 @@ const packages = [
             '1-3 videos a week customized for every requested social media platform',
             'Maximum of 1 Ad video per month',
             'Limited to 4 revisions per video',
-            'Open communication channel',
+            'Open communication channel'
         ],
         a: ['a1', 'a3', 'a4', 'a5'],
         b: ['b1', 'b2', 'b6'],
@@ -52,14 +52,14 @@ const packages = [
         includes: [
             '1-2 videos a week customized for every requested social media platform',
             'Limited to 2 revisions per video',
-            'Open communication channel',
+            'Open communication channel'
         ],
         a: ['a1', 'a2', 'a3', 'a4', 'a5'],
         b: ['b2', 'b3', 'b4', 'b5', 'b7'],
         c: ['c1', 'c2'],
         d: ['d1', 'd4'],
         e: ['e1']
-    },
+    }
 ];
 
 export default packages;

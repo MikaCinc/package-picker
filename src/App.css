@@ -109,8 +109,8 @@ p, h3, h2 {
 .stepLabel {
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 2.5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-align: left !important;
   /* flex: 1; */
 }

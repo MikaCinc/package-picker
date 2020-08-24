@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import Stepper from 'react-stepper-horizontal';
 import MultiSelect from "react-multi-select-component";
 import _ from 'lodash';
 
-import packages from './packages';
+// import packages from './packages';
 
 const optionsA = [
   { label: "13-17", value: "a1" },
@@ -50,21 +50,34 @@ const labels = [
   'How frequently would you like to post videos across all platforms?',
   "Which content style best resonates with the style you’re looking for?",
   'What will you be using to record your content?'
-]
+];
 
 const App = () => {
   const [active, setActive] = useState(0);
+  const [packages, setPackages] = useState([]);
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [userID, setUserID] = useState('');
+  const [firstName, setFirstName] = useState('mikac');
+  const [lastName, setLastName] = useState('test');
+  const [email, setEmail] = useState('mihajlo.ls00@outlook.com');
+  const [phone, setPhone] = useState('123123123');
 
   const [targetAudience, setTargetAudience] = useState([]);
   const [platforms, setPlatforms] = useState([]);
   const [frequency, setFrequency] = useState([]);
   const [style, setStyle] = useState([]);
   const [recording, setRecording] = useState([]);
+
+  useEffect(() => {
+    fetch('http://infrnomedia.com/packages.json', {
+      // mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }, []);
 
   const getPackage = () => {
     const current = {
@@ -127,6 +140,29 @@ const App = () => {
       alert('Please type valid email before moving to the next step');
       return;
     }
+
+    fetch('https://infrnomedia.com/wp-json/wc/v3/products?consumer_key=ck_dfd2cccab8646a1dd84ae277423a51d7caace0a7&consumer_secret=cs_effdf0d178b8da8b6076212ca59a921355d2c71c', {
+      method: 'post',
+      // mode: 'no-cors',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        phone
+      })
+    }).then((response) => {
+      return response.json();
+    }).then((response) => {
+      console.log(response);
+
+
+    }).catch((error) => {
+      console.log(error);
+    });
+
     setActive(active + 1);
   }
 
@@ -160,19 +196,19 @@ const App = () => {
             <div className="contentDivInner">
               <div className="infoFieldContainer">
                 <p>First name:</p>
-                <input className="infoInput" placeholder="ex. Marko" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
+                <input className="infoInput" placeholder="ex. Peter" type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} />
               </div>
               <div className="infoFieldContainer">
                 <p>Last name:</p>
-                <input className="infoInput" placeholder="ex. Vučković" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
+                <input className="infoInput" placeholder="ex. Parker" type="text" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
               </div>
               <div className="infoFieldContainer">
                 <p>Email:</p>
-                <input className="infoInput" placeholder="ex. marko@vuckovic.com" required type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                <input className="infoInput" placeholder="ex. peter@parker.com" required type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
               </div>
               <div className="infoFieldContainer">
                 <p>Phone:</p>
-                <input className="infoInput" placeholder="ex. (063)554-455" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
+                <input className="infoInput" placeholder="ex. +1(415)5552671" type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
               </div>
             </div>
             <input className="nextButton" type="submit" value="Next" />
