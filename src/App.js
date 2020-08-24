@@ -5,7 +5,7 @@ import Stepper from 'react-stepper-horizontal';
 import MultiSelect from "react-multi-select-component";
 import _ from 'lodash';
 
-// import packages from './packages';
+import packages from './packages';
 
 const optionsA = [
   { label: "13-17", value: "a1" },
@@ -54,7 +54,7 @@ const labels = [
 
 const App = () => {
   const [active, setActive] = useState(0);
-  const [packages, setPackages] = useState([]);
+  // const [packages, setPackages] = useState([]);
 
   const [userID, setUserID] = useState('');
   const [firstName, setFirstName] = useState('mikac');
@@ -68,16 +68,16 @@ const App = () => {
   const [style, setStyle] = useState([]);
   const [recording, setRecording] = useState([]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     fetch('http://infrnomedia.com/packages.json', {
       // mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
     })
       .then(response => response.json())
       .then(data => console.log(data));
-  }, []);
+  }, []); */
 
   const getPackage = () => {
     const current = {
@@ -141,12 +141,12 @@ const App = () => {
       return;
     }
 
-    fetch('https://infrnomedia.com/wp-json/wc/v3/products?consumer_key=ck_dfd2cccab8646a1dd84ae277423a51d7caace0a7&consumer_secret=cs_effdf0d178b8da8b6076212ca59a921355d2c71c', {
+    fetch('https://infrnomedia.com/packagepicker.php', {
       method: 'post',
       // mode: 'no-cors',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-      }),
+      // headers: new Headers({
+      //   'Content-Type': 'application/json',
+      // }),
       body: JSON.stringify({
         firstName,
         lastName,
@@ -155,15 +155,50 @@ const App = () => {
       })
     }).then((response) => {
       return response.json();
-    }).then((response) => {
-      console.log(response);
+    }).then(({ id }) => {
 
+      console.log(id)
+
+      if (!id) {
+        console.log("error, didn't get ID");
+        return;
+      }
+
+      setUserID(id);
 
     }).catch((error) => {
       console.log(error);
     });
 
     setActive(active + 1);
+  }
+
+  const updateUser = () => {
+    fetch('https://infrnomedia.com/packagepicker.php', {
+      method: 'post',
+      // mode: 'no-cors',
+      // headers: new Headers({
+      //   'Content-Type': 'application/json',
+      // }),
+      body: JSON.stringify({
+        id: userID,
+        firstName,
+        lastName,
+        email,
+        phone,
+        targetAudience,
+        platforms,
+        frequency,
+        style,
+        recording
+      })
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.log(data);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   return (
@@ -224,7 +259,10 @@ const App = () => {
               labelledBy={"Select"}
               className="multiSelect"
             />
-            <button disabled={targetAudience.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+            <button disabled={targetAudience.length <= 0} className="nextButton" onClick={() => { 
+              setActive(active + 1);
+              updateUser();
+            }}>Next</button>
           </div>
         }
         {
@@ -237,7 +275,10 @@ const App = () => {
               labelledBy={"Select"}
               className="multiSelect"
             />
-            <button disabled={platforms.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+            <button disabled={platforms.length <= 0} className="nextButton" onClick={() => { 
+              setActive(active + 1);
+              updateUser();
+            }}>Next</button>
           </div>
         }
         {
@@ -263,7 +304,10 @@ const App = () => {
               hasSelectAll={false}
               className="multiSelect"
             />
-            <button disabled={frequency.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+            <button disabled={frequency.length <= 0} className="nextButton" onClick={() => { 
+              setActive(active + 1);
+              updateUser();
+            }}>Next</button>
           </div>
         }
         {
@@ -291,7 +335,10 @@ const App = () => {
                 <p className="gifTitle">Tony Robbins</p>
               </div>
             </div>
-            <button disabled={style.length <= 0} className="nextButton" onClick={() => { setActive(active + 1) }}>Next</button>
+            <button disabled={style.length <= 0} className="nextButton" onClick={() => { 
+              setActive(active + 1);
+              updateUser();
+            }}>Next</button>
           </div>
         }
         {
@@ -307,6 +354,7 @@ const App = () => {
             <button disabled={recording.length <= 0} className="nextButton" onClick={
               () => {
                 setActive(active + 1);
+                updateUser();
               }
             }>Next</button>
           </div>
