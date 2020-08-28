@@ -14,6 +14,10 @@ p, h3, h2 {
   color: white;
 }
 
+button:focus, input[type="submit"] {
+  outline: none;
+}
+
 :root {
   --rmsc-main: black !important;
 }
@@ -51,17 +55,6 @@ p, h3, h2 {
   border: none;
 }
 
-
-/* * {
-  transition-duration: 0.2s;
-}
-
-:focus {
-  border: 2px solid white;
-  outline: 3px solid #5096FF;
-  box-shadow: 0 0 10px 1px #5096FF;
-} */
-
 .gifContainer {
   display: flex;
   align-items: center;
@@ -73,7 +66,6 @@ p, h3, h2 {
   width: 250px;
   height: 250px;
   border: 2px solid gray;
-  /* padding: 1px; */
   margin: 10px;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -101,9 +93,8 @@ p, h3, h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* min-height: 50vh; */
   flex-direction: column;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 .stepLabel {
@@ -112,7 +103,6 @@ p, h3, h2 {
   padding-left: 10px;
   padding-right: 10px;
   text-align: left !important;
-  /* flex: 1; */
 }
 
 .contentDiv {
@@ -126,18 +116,6 @@ p, h3, h2 {
 }
 
 @media (max-width: 775px) {
-  /* .contentDiv:first {
-    flex-direction: column !important;
-  }
-
-  .contentDiv {
-    margin-top: 25px !important;
-  }
-
-  .backButton:first {
-    margin-bottom: 15px;
-  } */
-
   .contentDiv {
     padding: 10px !important;
   }
@@ -152,7 +130,7 @@ p, h3, h2 {
   }
 
   .gifContainer {
-    overflow: scroll;
+    overflow-y: scroll;
     border: 2px solid white;
     margin: 5px;
     height: 550px;
@@ -166,10 +144,6 @@ p, h3, h2 {
   h3 {
     font-size: 18px;
   }
-
-  /* .nextButton {
-    margin-top: 15px;
-  } */
 }
 
 .infoFieldContainer {
@@ -191,8 +165,6 @@ p, h3, h2 {
 }
 
 .infoInput:hover {
-  /* border-radius: 10px;
-  border: 1px solid #5096FF; */
   background-color: #a6a6a6;
 }
 
@@ -214,15 +186,14 @@ p, h3, h2 {
   letter-spacing: 2px;
   font-family: 'Bebas Neue', sans-serif;
   
-  transition-duration: 0.4s;
+  transition-duration: 0.3s;
   background-image: linear-gradient(to bottom,white, white 50%, black 50%, black);
   background-size: 100% 200%;
-  -webkit-transition: background-position .4s;
-  transition: background-position .4s;
+  -webkit-transition: background-position .3s;
+  transition: background-position .3s;
 }
 
 .nextButton:hover {
-  /* background: black; */
   color: white;
   background-position: 0 -100%;
 }
@@ -250,12 +221,11 @@ p, h3, h2 {
   transition-duration: 0.4s;
   background-image: linear-gradient(to bottom,white, white 50%, black 50%, black);
   background-size: 100% 200%;
-  -webkit-transition: background-position .4s;
-  transition: background-position .4s;
+  -webkit-transition: background-position .3s;
+  transition: background-position .3s;
 }
 
 .backButton:hover {
-  /* background: black; */
   color: white;
   background-position: 0 -100%;
 }
@@ -274,7 +244,6 @@ p, h3, h2 {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 20px;
   margin-top: 50px;
 }
 
@@ -291,8 +260,6 @@ p, h3, h2 {
   max-width: 450px;
   padding: 15px 25px 75px 25px;
   border: 3px solid white;
-  /* margin-left: auto;
-  margin-right: auto; */
   background-color: gray;
   color: black;
   flex-direction: column;
@@ -333,12 +300,11 @@ p, h3, h2 {
   transition-duration: 0.4s;
   background-image: linear-gradient(to bottom,black, black 50%, white 50%, white);
   background-size: 100% 200%;
-  -webkit-transition: background-position .4s;
-  transition: background-position .4s;
+  -webkit-transition: background-position .3s;
+  transition: background-position .3s;
 }
 
 .finalButton:hover {
-  /* background: black; */
   color: black;
   background-position: 0 -100%;
 }

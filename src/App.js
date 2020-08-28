@@ -57,10 +57,10 @@ const App = () => {
   // const [packages, setPackages] = useState([]);
 
   const [userID, setUserID] = useState('');
-  const [firstName, setFirstName] = useState('mikac');
-  const [lastName, setLastName] = useState('test');
-  const [email, setEmail] = useState('mihajlo.ls00@outlook.com');
-  const [phone, setPhone] = useState('123123123');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   const [targetAudience, setTargetAudience] = useState([]);
   const [platforms, setPlatforms] = useState([]);
@@ -111,7 +111,7 @@ const App = () => {
     console.log(sorted);
 
     let selectedPackage = sorted[0];
-    // let selectedPackage = packages[0];
+    // @todo delete after testing // let selectedPackage = packages[0];
 
     if (!selectedPackage) {
       return null;
@@ -222,6 +222,11 @@ const App = () => {
         defaultColor="#a6a6a6"
         completeBarColor="#ffffff"
         defaultOpacity="0.7"
+        defaultBorderColor="#a6a6a6"
+        completeBorderColor="#ffffff"
+        activeBorderColor="#00ff00"
+        defaultBorderWidth={40}
+        size={28}
       />
       <div className="stepContainer">
         <h3 className="stepLabel">{labels[active]}</h3>
@@ -316,7 +321,7 @@ const App = () => {
             <div className="gifContainer">
               <div className="gifInnerContainer">
                 <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/lPXADFGvpQn68OeyFs/giphy-downsized.gif'} onClick={() => { setStyle(['d1']) }} />
-                <p className="gifTitle">Brene Brown</p>
+                <p className="gifTitle">Tony Robbins</p>
               </div>
               <div className="gifInnerContainer">
                 <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/clohjFAo60iBlbcc7f/giphy-downsized.gif'} onClick={() => { setStyle(['d2']) }} />
@@ -328,11 +333,11 @@ const App = () => {
               </div>
               <div className="gifInnerContainer">
                 <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/W02FsttvBToErpFFTM/giphy.gif'} onClick={() => { setStyle(['d4']) }} />
-                <p className="gifTitle">Ryan Serhan</p>
+                <p className="gifTitle">Brene Brown</p>
               </div>
               <div className="gifInnerContainer">
                 <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/gHQjlU2zFlxkI1dfIM/giphy-downsized.gif'} onClick={() => { setStyle(['d5']) }} />
-                <p className="gifTitle">Tony Robbins</p>
+                <p className="gifTitle">Ryan Serhan</p>
               </div>
             </div>
             <button disabled={style.length <= 0} className="nextButton" onClick={() => { 
