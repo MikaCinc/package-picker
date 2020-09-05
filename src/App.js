@@ -65,7 +65,7 @@ const App = () => {
   const [targetAudience, setTargetAudience] = useState([]);
   const [platforms, setPlatforms] = useState([]);
   const [frequency, setFrequency] = useState([]);
-  const [style, setStyle] = useState([]);
+  const [style, setStyle] = useState([{ value: '', label: '' }]);
   const [recording, setRecording] = useState([]);
 
   /* useEffect(() => {
@@ -84,7 +84,7 @@ const App = () => {
       a: [...targetAudience.map(item => item.value)],
       b: [...platforms.map(item => item.value)],
       c: [...frequency.map(item => item.value)],
-      d: [...style],
+      d: [...style.map(item => item.value)],
       e: [...recording.map(item => item.value)]
     };
 
@@ -92,7 +92,7 @@ const App = () => {
       if (c.indexOf(current.c[0]) !== -1) return true;
       return false;
     })
-    console.log(filteredByCOption);
+    // console.log(filteredByCOption);
 
     filteredByCOption.forEach(p => {
       let counter = 0;
@@ -108,7 +108,7 @@ const App = () => {
 
 
     let sorted = _.orderBy(filteredByCOption, ['counter', 'price'], ['desc', 'asc']);
-    console.log(sorted);
+    // console.log(sorted);
 
     let selectedPackage = sorted[0];
     // @todo delete after testing // let selectedPackage = packages[0];
@@ -157,7 +157,7 @@ const App = () => {
       return response.json();
     }).then(({ id }) => {
 
-      console.log(id)
+      // console.log(id)
 
       if (!id) {
         console.log("error, didn't get ID");
@@ -264,7 +264,7 @@ const App = () => {
               labelledBy={"Select"}
               className="multiSelect"
             />
-            <button disabled={targetAudience.length <= 0} className="nextButton" onClick={() => { 
+            <button disabled={targetAudience.length <= 0} className="nextButton" onClick={() => {
               setActive(active + 1);
               updateUser();
             }}>Next</button>
@@ -280,7 +280,7 @@ const App = () => {
               labelledBy={"Select"}
               className="multiSelect"
             />
-            <button disabled={platforms.length <= 0} className="nextButton" onClick={() => { 
+            <button disabled={platforms.length <= 0} className="nextButton" onClick={() => {
               setActive(active + 1);
               updateUser();
             }}>Next</button>
@@ -309,7 +309,7 @@ const App = () => {
               hasSelectAll={false}
               className="multiSelect"
             />
-            <button disabled={frequency.length <= 0} className="nextButton" onClick={() => { 
+            <button disabled={frequency.length <= 0} className="nextButton" onClick={() => {
               setActive(active + 1);
               updateUser();
             }}>Next</button>
@@ -320,27 +320,42 @@ const App = () => {
             <button className="backButton" onClick={() => { setActive(active - 1) }}>Back</button>
             <div className="gifContainer">
               <div className="gifInnerContainer">
-                <img className={`gifChooser ${style[0] === 'd1' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/lPXADFGvpQn68OeyFs/giphy-downsized.gif'} onClick={() => { setStyle(['d1']) }} />
+                <img className={`gifChooser ${style[0].value === 'd1' ? 'selectedGif' : ''}`}
+                  alt=""
+                  src={'https://media.giphy.com/media/lPXADFGvpQn68OeyFs/giphy-downsized.gif'}
+                  onClick={() => { setStyle([{ label: 'Tony Robbins', value: 'd1' }]) }} />
                 <p className="gifTitle">Tony Robbins</p>
               </div>
               <div className="gifInnerContainer">
-                <img className={`gifChooser ${style[0] === 'd2' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/clohjFAo60iBlbcc7f/giphy-downsized.gif'} onClick={() => { setStyle(['d2']) }} />
+                <img className={`gifChooser ${style[0].value === 'd2' ? 'selectedGif' : ''}`}
+                  alt=""
+                  src={'https://media.giphy.com/media/clohjFAo60iBlbcc7f/giphy-downsized.gif'}
+                  onClick={() => { setStyle([{ label: 'Gary Vee', value: 'd2' }]) }} />
                 <p className="gifTitle">Gary Vee</p>
               </div>
               <div className="gifInnerContainer">
-                <img className={`gifChooser ${style[0] === 'd3' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/VIDVfz1sipCyyywQvB/giphy-downsized.gif'} onClick={() => { setStyle(['d3']) }} />
+                <img className={`gifChooser ${style[0].value === 'd3' ? 'selectedGif' : ''}`}
+                  alt=""
+                  src={'https://media.giphy.com/media/VIDVfz1sipCyyywQvB/giphy-downsized.gif'}
+                  onClick={() => { setStyle([{ label: 'Peter Voogd', value: 'd3' }]) }} />
                 <p className="gifTitle">Peter Voogd</p>
               </div>
               <div className="gifInnerContainer">
-                <img className={`gifChooser ${style[0] === 'd4' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/W02FsttvBToErpFFTM/giphy.gif'} onClick={() => { setStyle(['d4']) }} />
+                <img className={`gifChooser ${style[0].value === 'd4' ? 'selectedGif' : ''}`}
+                  alt=""
+                  src={'https://media.giphy.com/media/W02FsttvBToErpFFTM/giphy.gif'}
+                  onClick={() => { setStyle([{ label: 'Brene Brown', value: 'd4' }]) }} />
                 <p className="gifTitle">Brene Brown</p>
               </div>
               <div className="gifInnerContainer">
-                <img className={`gifChooser ${style[0] === 'd5' ? 'selectedGif' : ''}`} alt="" src={'https://media.giphy.com/media/gHQjlU2zFlxkI1dfIM/giphy-downsized.gif'} onClick={() => { setStyle(['d5']) }} />
+                <img className={`gifChooser ${style[0].value === 'd5' ? 'selectedGif' : ''}`}
+                  alt=""
+                  src={'https://media.giphy.com/media/gHQjlU2zFlxkI1dfIM/giphy-downsized.gif'}
+                  onClick={() => { setStyle([{ label: 'Ryan Serhan', value: 'd5' }]) }} />
                 <p className="gifTitle">Ryan Serhan</p>
               </div>
             </div>
-            <button disabled={style.length <= 0} className="nextButton" onClick={() => { 
+            <button disabled={style.length <= 0} className="nextButton" onClick={() => {
               setActive(active + 1);
               updateUser();
             }}>Next</button>
